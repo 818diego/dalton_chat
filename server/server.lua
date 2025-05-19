@@ -48,7 +48,8 @@ RegisterCommand('ooc', function(source, args, rawCommand)
     local message = table.concat(args, " ")
     if message == "" then
         TriggerClientEvent('chat:addMessage', source, {
-            template = '<div style="display: flex; margin: 0.5vw; background-color: rgba(255, 0, 0, 0.6); border-radius: 0.5vw; padding: 0.7vw; font-size: 15px;"><span style="color: white;">ERROR:</span> <span style="color: white; padding-left: 0.5vw;">Debes escribir un mensaje para usar el chat OOC.</span></div>'
+            template =
+            '<div style="display: flex; margin: 0.5vw; background-color: rgba(255, 0, 0, 0.6); border-radius: 0.5vw; padding: 0.7vw; font-size: 15px;"><span style="color: white;">ERROR:</span> <span style="color: white; padding-left: 0.5vw;">Debes escribir un mensaje para usar el chat OOC.</span></div>'
         })
         return
     end
@@ -58,20 +59,23 @@ end, false)
 RegisterCommand('msg', function(source, args, rawCommand)
     if #args < 2 then
         TriggerClientEvent('chat:addMessage', source, {
-            template = '<div style="display: flex; margin: 0.5vw; background-color: rgba(255, 0, 0, 0.6); border-radius: 0.5vw; padding: 0.7vw; font-size: 15px;"><span style="color: white;">ERROR:</span> <span style="color: white; padding-left: 0.5vw;">Uso: /msg [ID] [mensaje]</span></div>'
+            template =
+            '<div style="display: flex; margin: 0.5vw; background-color: rgba(255, 0, 0, 0.6); border-radius: 0.5vw; padding: 0.7vw; font-size: 15px;"><span style="color: white;">ERROR:</span> <span style="color: white; padding-left: 0.5vw;">Uso: /msg [ID] [mensaje]</span></div>'
         })
         return
     end
     local targetId = tonumber(args[1])
     if not targetId then
         TriggerClientEvent('chat:addMessage', source, {
-            template = '<div style="display: flex; margin: 0.5vw; background-color: rgba(255, 0, 0, 0.6); border-radius: 0.5vw; padding: 0.7vw; font-size: 15px;"><span style="color: white;">ERROR:</span> <span style="color: white; padding-left: 0.5vw;">La ID debe ser un número.</span></div>'
+            template =
+            '<div style="display: flex; margin: 0.5vw; background-color: rgba(255, 0, 0, 0.6); border-radius: 0.5vw; padding: 0.7vw; font-size: 15px;"><span style="color: white;">ERROR:</span> <span style="color: white; padding-left: 0.5vw;">La ID debe ser un número.</span></div>'
         })
         return
     end
     if GetPlayerName(targetId) == nil then
         TriggerClientEvent('chat:addMessage', source, {
-            template = '<div style="display: flex; margin: 0.5vw; background-color: rgba(255, 0, 0, 0.6); border-radius: 0.5vw; padding: 0.7vw; font-size: 15px;"><span style="color: white;">ERROR:</span> <span style="color: white; padding-left: 0.5vw;">No se encontró ningún jugador con esa ID.</span></div>'
+            template =
+            '<div style="display: flex; margin: 0.5vw; background-color: rgba(255, 0, 0, 0.6); border-radius: 0.5vw; padding: 0.7vw; font-size: 15px;"><span style="color: white;">ERROR:</span> <span style="color: white; padding-left: 0.5vw;">No se encontró ningún jugador con esa ID.</span></div>'
         })
         return
     end
@@ -84,16 +88,18 @@ RegisterCommand('sapd', function(source, args, rawCommand)
     local playerId = source
     local Player = exports.qbx_core:GetPlayer(source)
     if not Player then return end
-    if Player.PlayerData.job.name ~= "police"  then
+    if Player.PlayerData.job.name ~= "police" then
         TriggerClientEvent('chat:addMessage', playerId, {
-            template = '<div style="display: flex; margin: 0.5vw; background-color: rgba(255, 0, 0, 0.6); border-radius: 0.5vw; padding: 0.7vw; font-size: 15px;"><span style="color: white;">ERROR:</span> <span style="color: white; padding-left: 0.5vw;">No tienes permiso para usar este comando.</span></div>'
+            template =
+            '<div style="display: flex; margin: 0.5vw; background-color: rgba(255, 0, 0, 0.6); border-radius: 0.5vw; padding: 0.7vw; font-size: 15px;"><span style="color: white;">ERROR:</span> <span style="color: white; padding-left: 0.5vw;">No tienes permiso para usar este comando.</span></div>'
         })
         return
     end
     local message = table.concat(args, " ")
     if message == "" then
         TriggerClientEvent('chat:addMessage', playerId, {
-            template = '<div style="display: flex; margin: 0.5vw; background-color: rgba(255, 0, 0, 0.6); border-radius: 0.5vw; padding: 0.7vw; font-size: 15px;"><span style="color: white;">ERROR:</span> <span style="color: white; padding-left: 0.5vw;">Debes proporcionar un texto para usar este comando.</span></div>'
+            template =
+            '<div style="display: flex; margin: 0.5vw; background-color: rgba(255, 0, 0, 0.6); border-radius: 0.5vw; padding: 0.7vw; font-size: 15px;"><span style="color: white;">ERROR:</span> <span style="color: white; padding-left: 0.5vw;">Debes proporcionar un texto para usar este comando.</span></div>'
         })
         return
     end
@@ -105,16 +111,18 @@ RegisterCommand('lssd', function(source, args, rawCommand)
     local playerId = source
     local Player = exports.qbx_core:GetPlayer(source)
     if not Player then return end
-    if Player.PlayerData.job.name ~= "sherrif"  then
+    if Player.PlayerData.job.name ~= "sherrif" then
         TriggerClientEvent('chat:addMessage', playerId, {
-            template = '<div style="display: flex; margin: 0.5vw; background-color: rgba(255, 0, 0, 0.6); border-radius: 0.5vw; padding: 0.7vw; font-size: 15px;"><span style="color: white;">ERROR:</span> <span style="color: white; padding-left: 0.5vw;">No tienes permiso para usar este comando.</span></div>'
+            template =
+            '<div style="display: flex; margin: 0.5vw; background-color: rgba(255, 0, 0, 0.6); border-radius: 0.5vw; padding: 0.7vw; font-size: 15px;"><span style="color: white;">ERROR:</span> <span style="color: white; padding-left: 0.5vw;">No tienes permiso para usar este comando.</span></div>'
         })
         return
     end
     local message = table.concat(args, " ")
     if message == "" then
         TriggerClientEvent('chat:addMessage', playerId, {
-            template = '<div style="display: flex; margin: 0.5vw; background-color: rgba(255, 0, 0, 0.6); border-radius: 0.5vw; padding: 0.7vw; font-size: 15px;"><span style="color: white;">ERROR:</span> <span style="color: white; padding-left: 0.5vw;">Debes proporcionar un texto para usar este comando.</span></div>'
+            template =
+            '<div style="display: flex; margin: 0.5vw; background-color: rgba(255, 0, 0, 0.6); border-radius: 0.5vw; padding: 0.7vw; font-size: 15px;"><span style="color: white;">ERROR:</span> <span style="color: white; padding-left: 0.5vw;">Debes proporcionar un texto para usar este comando.</span></div>'
         })
         return
     end
@@ -126,19 +134,56 @@ RegisterCommand('ems', function(source, args, rawCommand)
     local playerId = source
     local Player = exports.qbx_core:GetPlayer(source)
     if not Player then return end
-    if Player.PlayerData.job.name ~= "ambulance"  then
+    if Player.PlayerData.job.name ~= "ambulance" then
         TriggerClientEvent('chat:addMessage', playerId, {
-            template = '<div style="display: flex; margin: 0.5vw; background-color: rgba(255, 0, 0, 0.6); border-radius: 0.5vw; padding: 0.7vw; font-size: 15px;"><span style="color: white;">ERROR:</span> <span style="color: white; padding-left: 0.5vw;">No tienes permiso para usar este comando.</span></div>'
+            template =
+            '<div style="display: flex; margin: 0.5vw; background-color: rgba(255, 0, 0, 0.6); border-radius: 0.5vw; padding: 0.7vw; font-size: 15px;"><span style="color: white;">ERROR:</span> <span style="color: white; padding-left: 0.5vw;">No tienes permiso para usar este comando.</span></div>'
         })
         return
     end
     local message = table.concat(args, " ")
     if message == "" then
         TriggerClientEvent('chat:addMessage', playerId, {
-            template = '<div style="display: flex; margin: 0.5vw; background-color: rgba(255, 0, 0, 0.6); border-radius: 0.5vw; padding: 0.7vw; font-size: 15px;"><span style="color: white;">ERROR:</span> <span style="color: white; padding-left: 0.5vw;">Debes proporcionar un texto para usar este comando.</span></div>'
+            template =
+            '<div style="display: flex; margin: 0.5vw; background-color: rgba(255, 0, 0, 0.6); border-radius: 0.5vw; padding: 0.7vw; font-size: 15px;"><span style="color: white;">ERROR:</span> <span style="color: white; padding-left: 0.5vw;">Debes proporcionar un texto para usar este comando.</span></div>'
         })
         return
     end
     local formattedMessage = string.format(message)
     exports['chat']:sendFormattedMessage(source, "EMS", formattedMessage)
+end, false)
+
+RegisterCommand('cs', function(source, args, rawCommand)
+    local playerId = source
+    if not (IsPlayerAceAllowed(playerId, "admin") or IsPlayerAceAllowed(playerId, "mod") or IsPlayerAceAllowed(playerId, "support")) then
+        TriggerClientEvent('chat:addMessage', playerId, {
+            template =
+            '<div style="display: flex; margin: 0.5vw; background-color: rgba(255, 0, 0, 0.6); border-radius: 0.5vw; padding: 0.7vw; font-size: 15px;"><span style="color: white;">ERROR:</span> <span style="color: white; padding-left: 0.5vw;">No tienes permiso para usar el chat de staff.</span></div>'
+        })
+        return
+    end
+    local message = table.concat(args, " ")
+    if message == "" then
+        TriggerClientEvent('chat:addMessage', playerId, {
+            template =
+            '<div style="display: flex; margin: 0.5vw; background-color: rgba(255, 0, 0, 0.6); border-radius: 0.5vw; padding: 0.7vw; font-size: 15px;"><span style="color: white;">ERROR:</span> <span style="color: white; padding-left: 0.5vw;">Debes proporcionar un texto para usar este comando.</span></div>'
+        })
+        return
+    end
+    local senderRank = "Staff"
+    if IsPlayerAceAllowed(playerId, "admin") then
+        senderRank = "Admin"
+    elseif IsPlayerAceAllowed(playerId, "mod") then
+        senderRank = "Mod"
+    elseif IsPlayerAceAllowed(playerId, "support") then
+        senderRank = "Support"
+    end
+    local formattedMessage = GetPlayerName(source) .. ": " .. message
+    local players = GetPlayers()
+    for _, playerID in ipairs(players) do
+        playerID = tonumber(playerID)
+        if IsPlayerAceAllowed(playerID, "admin") or IsPlayerAceAllowed(playerID, "mod") or IsPlayerAceAllowed(playerID, "support") then
+            exports['chat']:sendFormattedMessage(playerID, "STAFF", formattedMessage)
+        end
+    end
 end, false)
