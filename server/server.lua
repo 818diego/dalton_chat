@@ -187,3 +187,117 @@ RegisterCommand('cs', function(source, args, rawCommand)
         end
     end
 end, false)
+
+RegisterCommand('rpol', function(source, args, rawCommand)
+    local playerId = source
+    local Player = exports.qbx_core:GetPlayer(source)
+    if not Player then return end
+    if Player.PlayerData.job.name ~= "police" and Player.PlayerData.job.name ~= "sherrif" then
+        TriggerClientEvent('chat:addMessage', playerId, {
+            template =
+            '<div style="display: flex; margin: 0.5vw; background-color: rgba(255, 0, 0, 0.6); border-radius: 0.5vw; padding: 0.7vw; font-size: 15px;"><span style="color: white;">ERROR:</span> <span style="color: white; padding-left: 0.5vw;">No tienes permiso para usar este comando.</span></div>'
+        })
+        return
+    end
+    local message = table.concat(args, " ")
+    if message == "" then
+        TriggerClientEvent('chat:addMessage', playerId, {
+            template =
+            '<div style="display: flex; margin: 0.5vw; background-color: rgba(255, 0, 0, 0.6); border-radius: 0.5vw; padding: 0.7vw; font-size: 15px;"><span style="color: white;">ERROR:</span> <span style="color: white; padding-left: 0.5vw;">Debes proporcionar un texto para usar este comando.</span></div>'
+        })
+        return
+    end
+    local players = GetPlayers()
+    local senderPlayer = Player
+    local lastName = senderPlayer.PlayerData.charinfo.lastname
+    local jobGrade = senderPlayer.PlayerData.job.grade.name
+    local formattedMessage =
+        '<span style="background-color: rgba(0, 0, 0, 0.3); padding: 0px 5px 0px 5px; border-radius: 2px;">' ..
+        jobGrade .. ' ' .. lastName .. '</span> : ' .. message
+    for _, playerID in ipairs(players) do
+        playerID = tonumber(playerID)
+        local targetPlayer = exports.qbx_core:GetPlayer(playerID)
+        if targetPlayer and (targetPlayer.PlayerData.job.name == "police" or targetPlayer.PlayerData.job.name == "sherrif") then
+            exports['chat']:sendFormattedMessage(playerID, "SAPD-INTERNO", formattedMessage)
+        end
+    end
+end, false)
+
+RegisterCommand('311', function(source, args, rawCommand)
+    local playerId = source
+    local Player = exports.qbx_core:GetPlayer(source)
+    if not Player then return end
+    if Player.PlayerData.job.name ~= "police" and Player.PlayerData.job.name ~= "sherrif" and Player.PlayerData.job.name ~= "ambulance" then
+        TriggerClientEvent('chat:addMessage', playerId, {
+            template =
+            '<div style="display: flex; margin: 0.5vw; background-color: rgba(255, 0, 0, 0.6); border-radius: 0.5vw; padding: 0.7vw; font-size: 15px;"><span style="color: white;">ERROR:</span> <span style="color: white; padding-left: 0.5vw;">No tienes permiso para usar este comando.</span></div>'
+        })
+        return
+    end
+    local message = table.concat(args, " ")
+    if message == "" then
+        TriggerClientEvent('chat:addMessage', playerId, {
+            template =
+            '<div style="display: flex; margin: 0.5vw; background-color: rgba(255, 0, 0, 0.6); border-radius: 0.5vw; padding: 0.7vw; font-size: 15px;"><span style="color: white;">ERROR:</span> <span style="color: white; padding-left: 0.5vw;">Debes proporcionar un texto para usar este comando.</span></div>'
+        })
+        return
+    end
+    local players = GetPlayers()
+    local senderPlayer = Player
+    local lastName = senderPlayer.PlayerData.charinfo.lastname
+    local jobGrade = senderPlayer.PlayerData.job.grade.name
+    local department = ""
+    if Player.PlayerData.job.name == "police" then
+        department = "SAPD"
+    elseif Player.PlayerData.job.name == "sherrif" then
+        department = "LSSD"
+    elseif Player.PlayerData.job.name == "ambulance" then
+        department = "EMS"
+    end
+    local formattedMessage =
+        '<span style="background-color: rgba(0, 0, 0, 0.3); padding: 0px 5px 0px 5px; border-radius: 2px;">' ..
+        department .. ' - ' .. jobGrade .. ' ' .. lastName .. '</span> : ' .. message
+    for _, playerID in ipairs(players) do
+        playerID = tonumber(playerID)
+        local targetPlayer = exports.qbx_core:GetPlayer(playerID)
+        if targetPlayer and (targetPlayer.PlayerData.job.name == "police" or targetPlayer.PlayerData.job.name == "sherrif" or targetPlayer.PlayerData.job.name == "ambulance") then
+            exports['chat']:sendFormattedMessage(playerID, "EMERGENCIAS-311", formattedMessage)
+        end
+    end
+end, false)
+
+RegisterCommand('911', function(source, args, rawCommand)
+    local playerId = source
+    local Player = exports.qbx_core:GetPlayer(source)
+    if not Player then return end
+    if Player.PlayerData.job.name ~= "ambulance" then
+        TriggerClientEvent('chat:addMessage', playerId, {
+            template =
+            '<div style="display: flex; margin: 0.5vw; background-color: rgba(255, 0, 0, 0.6); border-radius: 0.5vw; padding: 0.7vw; font-size: 15px;"><span style="color: white;">ERROR:</span> <span style="color: white; padding-left: 0.5vw;">No tienes permiso para usar este comando.</span></div>'
+        })
+        return
+    end
+    local message = table.concat(args, " ")
+    if message == "" then
+        TriggerClientEvent('chat:addMessage', playerId, {
+            template =
+            '<div style="display: flex; margin: 0.5vw; background-color: rgba(255, 0, 0, 0.6); border-radius: 0.5vw; padding: 0.7vw; font-size: 15px;"><span style="color: white;">ERROR:</span> <span style="color: white; padding-left: 0.5vw;">Debes proporcionar un texto para usar este comando.</span></div>'
+        })
+        return
+    end
+    local players = GetPlayers()
+    local senderPlayer = Player
+    local lastName = senderPlayer.PlayerData.charinfo.lastname
+    local jobGrade = senderPlayer.PlayerData.job.grade.name
+    local formattedMessage =
+        '<span style="background-color: rgba(0, 0, 0, 0.3); padding: 0px 5px 0px 5px; border-radius: 2px;">' ..
+        jobGrade .. ' ' .. lastName .. '</span> : ' .. message
+
+    for _, playerID in ipairs(players) do
+        playerID = tonumber(playerID)
+        local targetPlayer = exports.qbx_core:GetPlayer(playerID)
+        if targetPlayer and targetPlayer.PlayerData.job.name == "ambulance" then
+            exports['chat']:sendFormattedMessage(playerID, "EMS-INTERNO", formattedMessage)
+        end
+    end
+end, false)
