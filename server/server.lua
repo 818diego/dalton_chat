@@ -332,7 +332,7 @@ RegisterCommand('222', function(source, args, rawCommand)
     exports['chat']:sendFormattedMessage(source, "EMERGENCIAS-311", formattedMessage, nil, emergencyTargets)
 end, false)
 
-RegisterCommand('911', function(source, args, rawCommand)
+RegisterCommand('rems', function(source, args, rawCommand)
     local playerId = source
     local Player = exports.qbx_core:GetPlayer(source)
     if not Player then return end
