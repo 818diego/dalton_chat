@@ -209,20 +209,22 @@ RegisterCommand('rpol', function(source, args, rawCommand)
         })
         return
     end
-    local players = GetPlayers()
     local senderPlayer = Player
     local lastName = senderPlayer.PlayerData.charinfo.lastname
     local jobGrade = senderPlayer.PlayerData.job.grade.name
     local formattedMessage =
         '<span style="background-color: rgba(0, 0, 0, 0.3); padding: 0px 5px 0px 5px; border-radius: 2px;">' ..
         jobGrade .. ' ' .. lastName .. '</span> : ' .. message
+    local players = GetPlayers()
+    local policeTargets = {}
     for _, playerID in ipairs(players) do
         playerID = tonumber(playerID)
         local targetPlayer = exports.qbx_core:GetPlayer(playerID)
         if targetPlayer and (targetPlayer.PlayerData.job.name == "police" or targetPlayer.PlayerData.job.name == "sherrif") then
-            exports['chat']:sendFormattedMessage(playerID, "SAPD-INTERNO", formattedMessage)
+            table.insert(policeTargets, playerID)
         end
     end
+    exports['chat']:sendFormattedMessage(source, "SAPD-INTERNO", formattedMessage, nil, policeTargets)
 end, false)
 
 RegisterCommand('311', function(source, args, rawCommand)
@@ -244,7 +246,6 @@ RegisterCommand('311', function(source, args, rawCommand)
         })
         return
     end
-    local players = GetPlayers()
     local senderPlayer = Player
     local lastName = senderPlayer.PlayerData.charinfo.lastname
     local jobGrade = senderPlayer.PlayerData.job.grade.name
@@ -259,13 +260,16 @@ RegisterCommand('311', function(source, args, rawCommand)
     local formattedMessage =
         '<span style="background-color: rgba(0, 0, 0, 0.3); padding: 0px 5px 0px 5px; border-radius: 2px;">' ..
         department .. ' - ' .. jobGrade .. ' ' .. lastName .. '</span> : ' .. message
+    local players = GetPlayers()
+    local emergencyTargets = {}
     for _, playerID in ipairs(players) do
         playerID = tonumber(playerID)
         local targetPlayer = exports.qbx_core:GetPlayer(playerID)
         if targetPlayer and (targetPlayer.PlayerData.job.name == "police" or targetPlayer.PlayerData.job.name == "sherrif" or targetPlayer.PlayerData.job.name == "ambulance") then
-            exports['chat']:sendFormattedMessage(playerID, "EMERGENCIAS-311", formattedMessage)
+            table.insert(emergencyTargets, playerID)
         end
     end
+    exports['chat']:sendFormattedMessage(source, "EMERGENCIAS-311", formattedMessage, nil, emergencyTargets)
 end, false)
 
 RegisterCommand('911', function(source, args, rawCommand)
@@ -287,19 +291,20 @@ RegisterCommand('911', function(source, args, rawCommand)
         })
         return
     end
-    local players = GetPlayers()
     local senderPlayer = Player
     local lastName = senderPlayer.PlayerData.charinfo.lastname
     local jobGrade = senderPlayer.PlayerData.job.grade.name
     local formattedMessage =
         '<span style="background-color: rgba(0, 0, 0, 0.3); padding: 0px 5px 0px 5px; border-radius: 2px;">' ..
         jobGrade .. ' ' .. lastName .. '</span> : ' .. message
-
+    local players = GetPlayers()
+    local emsTargets = {}
     for _, playerID in ipairs(players) do
         playerID = tonumber(playerID)
         local targetPlayer = exports.qbx_core:GetPlayer(playerID)
         if targetPlayer and targetPlayer.PlayerData.job.name == "ambulance" then
-            exports['chat']:sendFormattedMessage(playerID, "EMS-INTERNO", formattedMessage)
+            table.insert(emsTargets, playerID)
         end
     end
+    exports['chat']:sendFormattedMessage(source, "EMS-INTERNO", formattedMessage, nil, emsTargets)
 end, false)
