@@ -180,12 +180,14 @@ RegisterCommand('cs', function(source, args, rawCommand)
     end
     local formattedMessage = GetPlayerName(source) .. ": " .. message
     local players = GetPlayers()
+    local staffPlayers = {}
     for _, playerID in ipairs(players) do
         playerID = tonumber(playerID)
         if IsPlayerAceAllowed(playerID, "admin") or IsPlayerAceAllowed(playerID, "mod") or IsPlayerAceAllowed(playerID, "support") then
-            exports['chat']:sendFormattedMessage(playerID, "STAFF", formattedMessage)
+            table.insert(staffPlayers, playerID)
         end
     end
+    exports['chat']:sendFormattedMessage(source, "STAFF", formattedMessage, nil, staffPlayers)
 end, false)
 
 RegisterCommand('rpol', function(source, args, rawCommand)
