@@ -1,3 +1,42 @@
+TriggerEvent('chat:addSuggestion', '/pid', 'Envía un mensaje con tu ID de personaje', {
+    { name = "mensaje", help = "El mensaje que quieres enviar" }
+})
+TriggerEvent('chat:addSuggestion', '/me', 'Realiza una acción en tercera persona', {
+    { name = "acción", help = "La acción que realizas" }
+})
+TriggerEvent('chat:addSuggestion', '/do', 'Describe una situación o estado en tercera persona', {
+    { name = "descripción", help = "La descripción de la situación" }
+})
+TriggerEvent('chat:addSuggestion', '/dados', 'Tira un dado del 1 al 10')
+TriggerEvent('chat:addSuggestion', '/ooc', 'Envía un mensaje fuera de personaje (Out Of Character)', {
+    { name = "mensaje", help = "El mensaje OOC que quieres enviar" }
+})
+TriggerEvent('chat:addSuggestion', '/msg', 'Envía un mensaje privado a otro jugador', {
+    { name = "ID",      help = "ID del jugador" },
+    { name = "mensaje", help = "El mensaje que quieres enviar" }
+})
+TriggerEvent('chat:addSuggestion', '/sapd', 'Envía un mensaje como SAPD (Solo policías)', {
+    { name = "mensaje", help = "El mensaje que quieres enviar" }
+})
+TriggerEvent('chat:addSuggestion', '/lssd', 'Envía un mensaje como LSSD (Solo sheriffs)', {
+    { name = "mensaje", help = "El mensaje que quieres enviar" }
+})
+TriggerEvent('chat:addSuggestion', '/ems', 'Envía un mensaje como EMS (Solo paramédicos)', {
+    { name = "mensaje", help = "El mensaje que quieres enviar" }
+})
+TriggerEvent('chat:addSuggestion', '/cs', 'Envía un mensaje en el chat de staff (Solo staff)', {
+    { name = "mensaje", help = "El mensaje que quieres enviar" }
+})
+TriggerEvent('chat:addSuggestion', '/rpol', 'Chat interno de la policía (SAPD y LSSD)', {
+    { name = "mensaje", help = "El mensaje que quieres enviar" }
+})
+TriggerEvent('chat:addSuggestion', '/311', 'Chat entre servicios de emergencia (SAPD, LSSD y EMS)', {
+    { name = "mensaje", help = "El mensaje que quieres enviar" }
+})
+TriggerEvent('chat:addSuggestion', '/911', 'Chat interno de EMS (Solo paramédicos)', {
+    { name = "mensaje", help = "El mensaje que quieres enviar" }
+})
+
 RegisterCommand('pid', function(source, args, rawCommand)
     local message = table.concat(args, " ")
     if message == "" then
