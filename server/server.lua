@@ -116,7 +116,14 @@ RegisterCommand('rp', function(source, args, rawCommand)
         })
         return
     end
-    exports['chat']:sendFormattedMessage(source, "RP - IC", message, 15.0)
+    local Player = exports.qbx_core:GetPlayer(source)
+    local firstName = Player.PlayerData.charinfo.firstname
+    local lastName = Player.PlayerData.charinfo.lastname
+    local characterName = firstName .. " " .. lastName
+    local formattedMessage =
+        '<span style="background-color: rgba(0, 0, 0, 0.3); padding: 0px 5px 0px 5px; border-radius: 2px; font-style: italic;">' ..
+        characterName .. ' dice</span>: ' .. message
+    exports['chat']:sendFormattedMessage(source, "RP - IC", formattedMessage, 15.0)
 end, false)
 
 RegisterCommand('ooc', function(source, args, rawCommand)
@@ -333,7 +340,7 @@ RegisterCommand('222', function(source, args, rawCommand)
         department = "EMS"
     end
     local formattedMessage =
-        '<span style="background-color: rgba(0, 0, 0, 0.3); padding: 0px 5px 0px 5px; border-radius: 2px;">' ..
+        '<span style="background-color: rgba(0, 0, 0, 0.3); padding: 0px 5px 0px 5px; border-radius: 2px; font-style: italic;">' ..
         department .. ' - ' .. jobGrade .. ' ' .. lastName .. '</span> : ' .. message
     local players = GetPlayers()
     local emergencyTargets = {}
@@ -370,7 +377,7 @@ RegisterCommand('rems', function(source, args, rawCommand)
     local lastName = senderPlayer.PlayerData.charinfo.lastname
     local jobGrade = senderPlayer.PlayerData.job.grade.name
     local formattedMessage =
-        '<span style="background-color: rgba(0, 0, 0, 0.3); padding: 0px 5px 0px 5px; border-radius: 2px;">' ..
+        '<span style="background-color: rgba(0, 0, 0, 0.3); padding: 0px 5px 0px 5px; border-radius: 2px; font-style: italic;">' ..
         jobGrade .. ' ' .. lastName .. '</span> : ' .. message
     local players = GetPlayers()
     local emsTargets = {}
