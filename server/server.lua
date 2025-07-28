@@ -9,6 +9,9 @@ local function AddChatSuggestions(playerId)
         { name = "descripción", help = "La descripción de la situación" }
     })
     TriggerClientEvent('chat:addSuggestion', playerId, '/dados', 'Tira un dado del 1 al 10')
+    TriggerClientEvent('chat:addSuggestion', playerId, '/rp', 'Envía un mensaje de rol escrito (In Character)', {
+        { name = "mensaje", help = "El mensaje de rol que quieres enviar" }
+    })
     TriggerClientEvent('chat:addSuggestion', playerId, '/ooc', 'Envía un mensaje fuera de personaje (Out Of Character)',
         {
             { name = "mensaje", help = "El mensaje OOC que quieres enviar" }
@@ -102,6 +105,18 @@ RegisterCommand('dados', function(source, args, rawCommand)
     local roll = math.random(1, 10)
     local message = characterName .. " tiró los dados 🎲 y obtuvo un " .. roll
     exports['chat']:sendFormattedMessage(source, "DADOS", message, 10.0)
+end, false)
+
+RegisterCommand('rp', function(source, args, rawCommand)
+    local message = table.concat(args, " ")
+    if message == "" then
+        TriggerClientEvent('chat:addMessage', source, {
+            template =
+            '<div style="display: flex; margin: 0.5vw; background-color: rgba(255, 0, 0, 0.6); border-radius: 0.5vw; padding: 0.7vw; font-size: 15px;"><span style="color: white;">ERROR:</span> <span style="color: white; padding-left: 0.5vw;">Debes proporcionar un texto para usar este comando.</span></div>'
+        })
+        return
+    end
+    exports['chat']:sendFormattedMessage(source, "RP - IC", message, 15.0)
 end, false)
 
 RegisterCommand('ooc', function(source, args, rawCommand)
