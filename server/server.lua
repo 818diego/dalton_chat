@@ -260,7 +260,7 @@ RegisterCommand('cs', function(source, args, rawCommand)
     elseif IsPlayerAceAllowed(playerId, "support") then
         senderRank = "Support"
     end
-    local formattedMessage = GetPlayerName(source) .. ": " .. message
+    local formattedMessage = '<span style="background-color: rgba(0, 0, 0, 0.3); padding: 0px 5px 0px 5px; border-radius: 2px;">' .. GetPlayerName(source) .. '</span>: ' .. message
     local players = GetPlayers()
     local staffPlayers = {}
     for _, playerID in ipairs(players) do
